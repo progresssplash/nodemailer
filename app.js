@@ -1,4 +1,5 @@
 const express = require("express")
+require('dotenv').config();
 const app = express();
 const nodemailer = require("nodemailer");
 let transporter = nodemailer.createTransport({
@@ -6,16 +7,16 @@ let transporter = nodemailer.createTransport({
    port: 465,
    host: "smtp.gmail.com",
    auth: {
-    user: "progress7790@gmail.com",
-    pass: "xwtudejmakqyrpsf",
+    user: process.env.SENDER_EMAIL,
+    pass: process.env.PROJECT_API_KEY,
    },
-   from: "progresssplash@gmail.com"
+   from: process.env.RECEIVER_EMAIL
    
 });
 
 const mailOptions = {
-    from: "progress7790@gmail.com",
-    to: "progresssplash@gmail.com",
+    from: process.env.SENDER_EMAIL,
+    to: process.env.RECEIVER_EMAIL,
     subject: "Sending Email with Node js",
     text: "I am sending an email using nodemailer",
 };
